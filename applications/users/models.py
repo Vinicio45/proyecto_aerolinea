@@ -1,0 +1,60 @@
+from django.db import models
+
+from django.contrib.auth.models import  PermissionsMixin
+
+
+class User(models.Model):
+    # TIPO DE USUARIOS
+    ADMINISTRADOR = '0'
+    OPERADOR = '1'
+   
+    # GENEROS
+    VARON = 'M'
+    MUJER = 'F'
+    OTRO = 'O'
+    #
+    OCUPATION_CHOICES = [
+        (ADMINISTRADOR, 'Administrador'),
+        (OPERADOR, 'Operador'),
+    ]
+
+    GENDER_CHOICES = [
+        (VARON, 'Masculino'),
+        (MUJER, 'Femenino'),
+        (OTRO, 'Otros'),
+    ]
+
+    email = models.EmailField(unique=True)
+    full_name = models.CharField('Nombres', max_length=100)
+    ocupation = models.CharField(
+        max_length=1, 
+        choices=OCUPATION_CHOICES, 
+        blank=True
+    )
+    genero = models.CharField(
+        max_length=1, 
+        choices=GENDER_CHOICES, 
+        blank=True
+    )
+    date_birth = models.DateField(
+        'Fecha de nacimiento', 
+        blank=True,
+        null=True
+    )
+    image = models.ImageField(
+        'Imagen', 
+        upload_to='User',
+    )
+
+    is_active = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+
+    REQUIRED_FIELDS = ['full_name']
+
+
+    def get_short_name(self):
+        return self.email
+    
+    def get_full_name(self):
+        return self.full_name
