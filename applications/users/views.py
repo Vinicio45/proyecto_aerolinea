@@ -32,7 +32,7 @@ from .models import User
 class UserRegisterView(FormView):
     template_name = 'users/register.html'
     form_class = UserRegisterForm
-    success_url = reverse_lazy('users_app:user-lista')
+    success_url = reverse_lazy('users_app:user-register')
 
     def form_valid(self, form):
         #
@@ -43,6 +43,7 @@ class UserRegisterView(FormView):
             ocupation=form.cleaned_data['ocupation'],
             genero=form.cleaned_data['genero'],
             date_birth=form.cleaned_data['date_birth'],
+            image=form.cleaned_data['image'],
         )
         # enviar el codigo al email del user
         return super(UserRegisterView, self).form_valid(form)

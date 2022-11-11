@@ -17,14 +17,14 @@ def check_ocupation_user(ocupation, user_ocupation):
         return False
 
 
-class AlmacenPermisoMixin(LoginRequiredMixin):
+class OperadorPermisoMixin(LoginRequiredMixin):
     login_url = reverse_lazy('users_app:user-login')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return self.handle_no_permission()
         #
-        if not check_ocupation_user(request.user.ocupation, User.ALMACEN):
+        if not check_ocupation_user(request.user.ocupation, User.OPERADOR):
             # no tiene autorizacion
             return HttpResponseRedirect(
                 reverse(
@@ -33,41 +33,7 @@ class AlmacenPermisoMixin(LoginRequiredMixin):
             )
 
         return super().dispatch(request, *args, **kwargs)
-
-
-class VentasPermisoMixin(LoginRequiredMixin):
-    login_url = reverse_lazy('users_app:user-login')
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-        #
-        if not check_ocupation_user(request.user.ocupation, User.VENTAS):
-            # no tiene autorizacion
-            return HttpResponseRedirect(
-                reverse(
-                    'users_app:user-login'
-                )
-            )
-        return super().dispatch(request, *args, **kwargs)
-
-class RentaPermisoMixin(LoginRequiredMixin):
-    login_url = reverse_lazy('users_app:user-login')
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-        #
-        if not check_ocupation_user(request.user.ocupation, User.RENTA):
-            # no tiene autorizacion
-            return HttpResponseRedirect(
-                reverse(
-                    'users_app:user-login'
-                )
-            )
-        return super().dispatch(request, *args, **kwargs)
-
-
+                
 
 class AdminPermisoMixin(LoginRequiredMixin):
     login_url = reverse_lazy('users_app:user-login')

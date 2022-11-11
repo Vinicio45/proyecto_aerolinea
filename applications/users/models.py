@@ -1,9 +1,10 @@
 from django.db import models
 
-from django.contrib.auth.models import  PermissionsMixin
+from django.contrib.auth.models import  AbstractBaseUser, PermissionsMixin
 
+from .managers import UserManager
 
-class User(models.Model):
+class User(AbstractBaseUser, PermissionsMixin):
     # TIPO DE USUARIOS
     ADMINISTRADOR = '0'
     OPERADOR = '1'
@@ -42,16 +43,18 @@ class User(models.Model):
         null=True
     )
     image = models.ImageField(
-        'Imagen', 
-        upload_to='User',
+       'Imagen', 
+       upload_to='User',
     )
 
+    is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
 
     REQUIRED_FIELDS = ['full_name']
 
+    objects = UserManager()
 
     def get_short_name(self):
         return self.email

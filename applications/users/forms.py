@@ -36,6 +36,7 @@ class UserRegisterForm(forms.ModelForm):
             'ocupation',
             'genero',
             'date_birth',
+            'image'
         )
         widgets = {
             'email': forms.EmailInput(
@@ -114,6 +115,7 @@ class UserUpdateForm(forms.ModelForm):
             'ocupation',
             'genero',
             'date_birth',
+            'image',
             'is_active',
         )
         widgets = {

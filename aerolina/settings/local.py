@@ -8,7 +8,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/xe',
-        'USER': 'c##mendez',
+        'USER': 'c##vinicio',
         'PASSWORD': 'django',
         'TEST':{
             'USER': 'default_test',
@@ -30,4 +30,3 @@ MEDIA_ROOT = BASE_DIR.child('media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
