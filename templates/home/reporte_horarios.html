@@ -1,0 +1,57 @@
+{% extends "home/base_home.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x">
+  <form class="cell grid-x grid-x-margin" method="GET">
+    <div class="cell medium-3">
+      <label>Avion:</label>
+      <div class="input-group">
+        <span class="input-group-label"><i class="fi-book"></i></span>
+        {{form.horario}}
+      </div>
+    </div>
+    <div class="cell medium-3">
+      <label>Fecha Inicio:</label>
+      <div class="input-group">
+        <span class="input-group-label"><i class="fi-calendar"></i></span>
+        {{form.date_start}}
+      </div>
+    </div>
+    <div class="cell medium-3">
+      <label>Fecha Fin:</label>
+      <div class="input-group">
+        <span class="input-group-label"><i class="fi-calendar"></i></span>
+        {{form.date_end}}
+      </div>
+    </div>
+    <div class="cell medium-3">
+      <label for="">Buscar</label>
+      <button type="submit" class="cell medium-3 button">Buscar</button>
+    </div>
+    
+  </form>
+
+  <div class="cell grid-x grid-margin-x" style="margin-top: 1em;">
+    <table class="hover">
+      <thead>
+        <th>Fecha</th>
+        <th>Avion</th>
+        <th>Vuelo</th>
+      </thead>
+      <tbody>
+        {% for vuelo in vuelos_hora %}
+          <tr>
+            <td>{{ vuelo.fecha}}</td>
+            <td>{{ vuelo.vuelo.avion }}</td>
+            <td>{{ vuelo.vuelo.itinerario}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock panel-content %}

@@ -25,19 +25,16 @@
         </ul>
         <ul class="vertical menu">
             <li>
-              <a href="#"><span class="label warning">Planta Proceso Materia</span></a>
+              <a href="#"><span class="label warning">Reportes</span></a>
               <ul class="nested vertical menu">
                 <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
-                  <a href="" style="color: white;">Productos</a>
+                  <a href="{% url 'home_app:reporte_vuelos' %}" style="color: white;">Reporte Vuelos por avion</a>
                 </li>
-                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                  <a href="" style="color: white;">Vender</a>
-                </li>
-                <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                  <a href="" style="color: white;">Cerrar Caja</a>
-                </li>
-                <li class="{% if request.resolver_match.url_name == 'producto-filtros' %}activeli{% endif %}">
-                  <a href="" style="color: white;">Reportes</a>
+              </ul>
+
+              <ul class="nested vertical menu">
+                <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
+                  <a href="{% url 'home_app:reporte_horarios' %}" style="color: white;">Reporte Vuelos por horario</a>
                 </li>
               </ul>
             </li>

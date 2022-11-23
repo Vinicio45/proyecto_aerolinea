@@ -57,15 +57,34 @@ class Destino(TimeStampedModel):
         verbose_name_plural = 'Destino'
 
     def __str__(self):
-        return self.name
+        return self.ciudad
+
+class Hora(TimeStampedModel):
+
+    hora = models.IntegerField(
+        'Horario del vuelo',
+        blank=True, 
+        null=True
+        )
+
+    class Meta:
+        verbose_name = 'Hora'
+        verbose_name_plural = 'Horarios'
+
+    def __str__(self):
+        return str(self.hora) 
 
 
 class Itinerario(TimeStampedModel):
 
-    fecha = models.DateField(
-        'fecha del vuelo',
-        blank=True, 
-        null=True
+    descripcion = models.CharField(
+        'descripcion del vuelo', 
+        max_length=40
+    )
+
+    hora = models.ForeignKey(
+        Hora, 
+        on_delete=models.CASCADE
     )
 
     origen = models.ForeignKey(
@@ -83,16 +102,11 @@ class Itinerario(TimeStampedModel):
         verbose_name_plural = 'Itinerarios'
 
     def __str__(self):
-        return self.origen +" - "+self.destino
+        return str(self.origen) + " - " + str(self.destino)
 
-class Vuelo(TimeStampedModel):
+class Avion(TimeStampedModel):
 
-    capacidad = models.PositiveIntegerField(
-        'capacidad del avion',
-        default=0
-    )
-
-    modelo_avion = models.CharField(
+    modelo = models.CharField(
         'modelo del avion', 
         max_length=20
     )
@@ -101,6 +115,26 @@ class Vuelo(TimeStampedModel):
         Compania, 
         on_delete=models.CASCADE
     )
+
+    class Meta:
+        verbose_name = 'Avion'
+        verbose_name_plural = 'Aviones'
+
+    def __str__(self):
+        return self.modelo
+
+class Vuelo(TimeStampedModel):
+
+    capacidad = models.PositiveIntegerField(
+        'capacidad del avion',
+        default=0
+    )
+
+    avion =models.ForeignKey(
+        Avion, 
+        on_delete=models.CASCADE
+    )
+
 
     itinerario = models.ForeignKey(
         Itinerario, 
@@ -112,4 +146,4 @@ class Vuelo(TimeStampedModel):
         verbose_name_plural = 'Vuelos'
 
     def __str__(self):
-        return self.modelo_avion
+        return str(self.avion) + " - " + str(self.itinerario)
