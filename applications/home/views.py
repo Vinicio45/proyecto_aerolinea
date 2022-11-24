@@ -8,7 +8,7 @@ from django.views.generic import (
 
 from applications.persona.models import Pasaje
 from applications.users.mixins import AdminPermisoMixin
-from .forms import VuelosAvionForm, VuelosHorarioForm
+from .forms import VuelosAvionForm, VuelosHorarioForm, VuelosPasajerosForm
 
 from applications.utils import render_to_pdf
 
@@ -59,4 +59,19 @@ class ReporteHorarios(AdminPermisoMixin, ListView):
             date_end=self.request.GET.get("date_end", ''),
         )
         return lista_hora
+
+
+class ReporteVuelosView(AdminPermisoMixin, ListView):
+    template_name = "home/reporte_pasajeros.html"
+    context_object_name = "vuelos_pasajeros"
+    extra_context = {'form': VuelosPasajerosForm}
+    
+    def get_queryset(self):   
+
+        lista_pasaje = Pasaje.objects.resumen_vuelo_pasajero(
+            vuelo=self.request.GET.get("vuelo", ''),
+            date_start=self.request.GET.get("date_start", ''),
+            date_end=self.request.GET.get("date_start", ''),
+        )
+        return lista_pasaje
 

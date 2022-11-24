@@ -24,6 +24,12 @@ urlpatterns = [
     ),
 
     path(
+        'reporte/pasajeros', 
+        views.ReporteVuelosView.as_view(),
+        name='reporte_pasajeros',
+    ),
+
+    path(
         'reporte/vuelos/print/<pk>/', 
         views.ReporteAvionesViewPdf.as_view(),
         name='vuelos_print',

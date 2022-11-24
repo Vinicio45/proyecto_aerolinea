@@ -1,0 +1,54 @@
+{% extends "persona/base_persona.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+
+            
+
+<div class="grid-x grid-margin-x align-center">
+  <h5 class="cell" style="margin-bottom: 1em; text-align: center;">Detalle del cliente</h5>  
+  <div class="cell medium-9 grid-x grid-margin-x align-center">
+    
+    <div class="cell medium-7">
+        <div class="card cell">
+            <div class="card-section">
+              <h4>{{ object.name }}</h4>
+              <p><span style="font-weight: bold;">Nombres:</span> {{ object.nombres }}</p>
+              <p><span style="font-weight: bold;">Apellidos:</span> {{ object.apellidos }}</p>
+              <p><span style="font-weight: bold;">Edad:</span> {{ object.edad }}</p>
+              <p><span style="font-weight: bold;">Telefono:</span> {{ object.telefono }}</p>
+              <p><span style="font-weight: bold;">Nacionalidad:</span> {{ object.Nacionalidad }}</p>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="cell">Vuelos en los ultimos 30 dias</h4>
+    <div class="cell">
+        <table class="hover">
+            <thead>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Vuelo</th>
+            </thead>
+            <tbody>
+                {% for vuelo in vuelos_mes %}
+                <tr>
+                    <td>{{ vuelo.fecha }}</td>
+                    <td>{{ vuelo.vuelo__itinerario__hora }}</td>
+                    <td>{{ vuelo.vuelo__itinerario }}</td>
+                </tr>
+                {% empty %}
+                <p style="color: green;">No hay vuelos para este producto</p>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="cell medium-6">
+      <a target="_blank" href="" class="primary button">Imprimir</a>
+    </div>
+  </div>
+</div>
+
+{% endblock panel-content %}

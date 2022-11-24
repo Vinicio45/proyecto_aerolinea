@@ -1,0 +1,60 @@
+{% extends "home/base_home.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x">
+  <form class="cell grid-x grid-x-margin" method="GET">
+    <div class="cell medium-3">
+      <label>Vuelo:</label>
+      <div class="input-group">
+        <span class="input-group-label"><i class="fi-book"></i></span>
+        {{form.vuelo}}
+      </div>
+    </div>
+    <div class="cell medium-3">
+      <label>Fecha Inicio:</label>
+      <div class="input-group">
+        <span class="input-group-label"><i class="fi-calendar"></i></span>
+        {{form.date_start}}
+      </div>
+    </div>
+    <div class="cell medium-3">
+      <label for="">Buscar</label>
+      <button type="submit" class="cell medium-3 button">Buscar</button>
+    </div>
+    
+  </form>
+  
+
+  <div class="cell grid-x grid-margin-x" style="margin-top: 1em;">
+    <table class="hover">
+      <thead>
+        <th>Fecha</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Nacionalidad</th>
+        <th>Detalle</th>
+      </thead>
+      <tbody>
+        {% for vuelo in vuelos_pasajeros %}
+          <tr>
+            <td>{{ vuelo.fecha}}</td>
+            <td>{{ vuelo.cliente.nombres }}</td>
+            <td>{{ vuelo.cliente.apellidos}}</td>
+            <td>{{ vuelo.cliente.Nacionalidad}}</td>
+           <td>
+              <a href="{% url 'persona_app:detalle-persona' vuelo.cliente.pk %}" class="button warning"><i class="fi-eye"></i></a>
+           </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+  </div>
+  
+</div>
+
+{% endblock panel-content %}

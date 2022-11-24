@@ -28,13 +28,19 @@
               <a href="#"><span class="label warning">Reportes</span></a>
               <ul class="nested vertical menu">
                 <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
-                  <a href="{% url 'home_app:reporte_vuelos' %}" style="color: white;">Reporte Vuelos por avion</a>
+                  <a href="{% url 'home_app:reporte_vuelos' %}" style="color: white;">Vuelos por avion</a>
                 </li>
               </ul>
 
               <ul class="nested vertical menu">
                 <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
-                  <a href="{% url 'home_app:reporte_horarios' %}" style="color: white;">Reporte Vuelos por horario</a>
+                  <a href="{% url 'home_app:reporte_horarios' %}" style="color: white;"> Vuelos por horario</a>
+                </li>
+              </ul>
+
+              <ul class="nested vertical menu">
+                <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
+                  <a href="{% url 'home_app:reporte_pasajeros' %}" style="color: white;">Pasajeros por Vuelo </a>
                 </li>
               </ul>
             </li>

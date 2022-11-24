@@ -9,4 +9,5 @@ urlpatterns = [
     # users app
     re_path('', include('applications.users.urls')),
     re_path('', include('applications.home.urls')),
+    re_path('', include('applications.persona.urls')),
 ]
