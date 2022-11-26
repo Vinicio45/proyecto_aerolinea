@@ -1,0 +1,55 @@
+{% extends "vuelo/base_vuelo.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x align-center">
+  <h3 class="cell" style="margin-bottom: 1em; text-align: center;">NUEVO VUELO</h3>  
+  <form class="cell medium-9 grid-x grid-margin-x" method="POST">{% csrf_token %}
+      
+    <div class="cell medium-12">
+        <label>Fecha del Vuelo:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-calendar"></i></span>
+          {{ form.fecha }}
+        </div>
+    </div>
+
+    <div class="cell medium-6">
+        <label>Cliente:</label>
+        <div class="input-group">
+          {{form.cliente}}
+        </div>
+    </div>
+
+    <div class="cell medium-6">
+        <label>Vuelo:</label>
+        <div class="input-group">
+          {{form.vuelo}}
+        </div>
+    </div>
+
+    <div class="cell medium-6">
+        <label>Numero de asiento:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-list-number"></i></span>
+          {{form.asiento}}
+        </div>
+    </div>
+
+    <div class="cell medium-6">
+        <label>Valor del boleto:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-dollar"></i></span>
+          {{form.valor}}
+        </div>
+    </div>
+
+    <div class="cell medium-6">
+      <button type="submit" class="success button" style="width: 200px;">Agregar</button>
+    </div>
+  </form>
+</div>
+
+{% endblock panel-content %}

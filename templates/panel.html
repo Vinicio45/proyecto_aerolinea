@@ -23,6 +23,24 @@
             </ul>
           </li>
         </ul>
+
+        <ul class="vertical menu">
+          <li>
+            <a href="#"><span class="label warning">Vuelos</span></a>
+            <ul class="nested vertical menu">
+              <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
+                <a href="{% url 'persona_app:persona_add' %}" style="color: white;">Agregar vuelo</a>
+              </li>
+            </ul>
+
+            <ul class="nested vertical menu">
+              <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
+                <a href="" style="color: white;"> Ver vuelos</a>
+              </li>
+            </ul>
+          </li>
+      </ul> 
+
         <ul class="vertical menu">
             <li>
               <a href="#"><span class="label warning">Reportes</span></a>
