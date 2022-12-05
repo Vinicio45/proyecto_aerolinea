@@ -1,0 +1,44 @@
+{% extends "vuelo/base_vuelo.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x">
+    <div class="cell grid-x grid-margin-x">
+        <form class="cell small-9 input-group" method="GET">
+          <span class="input-group-label">NOMBRE</span>
+          <input class="input-group-field" type="text" name="kword" placeholder="nombre del cliente">
+          <div class="input-group-button">
+            <input type="submit" class="button secondary" value="Buscar">
+          </div>
+        </form>
+    </div>
+
+  <div class="cell grid-x grid-margin-x" style="margin-top: 2em;">
+    <table class="hover">
+      <thead>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Vuelo</th>
+        <th>Valor</th>
+        <th>Eliminar</th>
+      </thead>
+      <tbody>
+        {% for vuelo in vuelos %}
+          <tr>
+            <td>{{vuelo.fecha}}</td>
+            <td>{{vuelo.cliente}}</td>
+            <td>{{vuelo.vuelo}}</td>
+            <td>{{vuelo.valor}}</td>
+            <td>
+                <a href="{% url 'persona_app:vuelo-delete' vuelo.id %}" class="button alert"><i class="fi-x"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock panel-content %}

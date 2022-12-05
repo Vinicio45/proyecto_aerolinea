@@ -31,6 +31,7 @@
             </td>
             <td>
             <a href="{% url 'users_app:user-update' usuario.pk %}" class="button warning"><i class="fi-pencil"></i></a>
+            <a href="{% url 'users_app:user-detail' usuario.pk %}" class="button warning"><i class="fi-eye"></i></a>
             </td>
           </tr>
         {% endfor %}

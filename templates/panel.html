@@ -35,7 +35,7 @@
 
             <ul class="nested vertical menu">
               <li class="{% if request.resolver_match.url_name == 'producto-lista' %}activeli{% endif %}">
-                <a href="" style="color: white;"> Ver vuelos</a>
+                <a href="{% url 'persona_app:lista' %}" style="color: white;"> Ver vuelos</a>
               </li>
             </ul>
           </li>

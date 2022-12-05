@@ -5,16 +5,34 @@ from django.views.generic import (
     CreateView,
     FormView,
     DetailView,
+    ListView,
+    DeleteView,
 
 )
 
 from applications.persona.models import Pasaje
-from .models import Cliente
+from .models import Cliente, Pasaje
 from applications.users.mixins import AdminPermisoMixin
 
 from applications.utils import render_to_pdf
 
 from .forms import PasajeForm
+
+
+class VuelosListView(AdminPermisoMixin, ListView):
+    template_name = "vuelo/lista_vuelos.html"
+    context_object_name = 'vuelos'
+
+    def get_queryset(self):
+        kword = self.request.GET.get("kword", '')
+        queryset = Pasaje.objects.buscar_vuelo(kword)
+        return queryset
+
+class VueloDeleteView(AdminPermisoMixin, DeleteView):
+    template_name = "vuelo/eliminar_vuelo.html"
+    model = Pasaje
+    success_url = reverse_lazy('persona_app:lista')
+
 
 
 class PasajeCreateView(AdminPermisoMixin, FormView):

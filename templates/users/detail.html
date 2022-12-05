@@ -1,0 +1,36 @@
+{% extends "users/base_users.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x align-center">
+  <h5 class="cell" style="margin-bottom: 1em; text-align: center;">Detalle del Usuario</h5>  
+  <div class="cell medium-9 grid-x grid-margin-x align-center">
+    
+<div class="grid-container">
+  <div class="grid-x  align-center">
+      <div class=" cell large-4 card" style="width: 300px;">
+          <div class="card-divider">
+            {{object.full_name }}
+          </div>
+          
+          {% if object.image %}
+          <img src="{{ object.image.url }}"> 
+          {% else %}
+            <img src="{% static 'media/1.jpg' %}" >
+          {% endif%}
+              
+          
+          <div class="card-section">
+            <p><span style="font-weight: bold;">Email:</span> {{ object.email }}</p>
+            <p><span style="font-weight: bold;">Ocupacion:</span> {{ object.get_ocupation_display }}</p>
+            <p><span style="font-weight: bold;">Genero:</span> {{ object.get_genero_display }}</p>
+            <p><span style="font-weight: bold;">Fecha nacimiento:</span> {{ object.date_birth }}</p>
+            
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock panel-content %}

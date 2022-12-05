@@ -11,7 +11,8 @@ from django.views.generic import (
     CreateView,
     ListView,
     UpdateView,
-    DeleteView
+    DeleteView,
+    DetailView
 )
 
 from django.views.generic.edit import (
@@ -81,6 +82,10 @@ class UserUpdateView(UpdateView):
     model = User
     form_class = UserUpdateForm
     success_url = reverse_lazy('users_app:user-lista')
+
+class UserDetailView(AdminPermisoMixin, DetailView):
+    template_name = "users/detail.html"
+    model = User
 
 
 class UserDeleteView(DeleteView):

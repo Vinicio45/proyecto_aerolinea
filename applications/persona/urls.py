@@ -15,4 +15,16 @@ urlpatterns = [
         views.PersonaDetailView.as_view(),
         name='detalle',
     ),
+
+  path(
+        'vuelo/lista_vuelos/', 
+        views.VuelosListView.as_view(),
+        name='lista',
+    ),
+
+   path(
+        'vuelo/eliminar/<pk>/', 
+        views.VueloDeleteView.as_view(),
+        name='vuelo-delete',
+    ),
 ]

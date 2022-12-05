@@ -3,10 +3,20 @@ from datetime import timedelta
 # django
 from django.utils import timezone
 from django.db import models
+
+from django.db.models import Q, F
 #
 from applications.vuelo.models import Avion
 
 class PasajeManager(models.Manager):
+
+
+    def buscar_vuelo(self, kword):
+        consulta = self.filter(
+            cliente__nombres__icontains=kword
+        )
+        return consulta.order_by('-created')
+
 
     def resumen_vuelo_avion(self, **filters):
 

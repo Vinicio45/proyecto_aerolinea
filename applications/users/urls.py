@@ -31,6 +31,11 @@ urlpatterns = [
         views.UserUpdateView.as_view(),
         name='user-update',
     ),
+     path(
+        'users/detalle/<pk>/', 
+        views.UserDetailView.as_view(),
+        name='user-detail',
+    ),
     path(
         'users/delete/<pk>/', 
         views.UserDeleteView.as_view(),
